@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8001;
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_KEY);
 
 app.post(
-  "",
+  "/",
   async (req, res) => {
     console.log(req.body.history);
     console.log(req.body.message);
@@ -25,6 +25,14 @@ app.post(
     const result = await chat.sendMessage(msg);
     const response = await result.response;
     const text = response.text();
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+    ); 
     res.send(text);
     console.log(text);
   }
