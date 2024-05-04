@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8001;
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_KEY);
 
 app.post(
-  "api/chatbot",
+  "",
   async (req, res) => {
     console.log(req.body.history);
     console.log(req.body.message);
